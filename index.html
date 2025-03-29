@@ -71,7 +71,18 @@
             <div
               class="relative bg-gray-900 rounded-lg overflow-hidden aspect-video w-full max-w-3xl mx-auto border-2 border-gray-700 shadow-lg"
             >
-              <iframe
+
+            <iframe
+                      id="videoFrame"
+                      width="100%"
+                      height="100%"
+                      src="http://192.168.0.116:8000"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen>
+                  </iframe>
+
+              <!-- <iframe
                 id="videoFrame"
                 width="100%"
                 height="100%"
@@ -80,7 +91,8 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
               >
-              </iframe>
+              </iframe> -->
+              
               <div class="w-full h-full bg-black opacity-70"></div>
               <div class="absolute top-4 right-4 flex items-center space-x-2">
                 <div
@@ -91,15 +103,34 @@
               <div
                 class="absolute bottom-4 left-4 text-xs text-gray-300 font-mono"
               >
-                <div>Camera 01</div>
+                <div>Drone Camera 02</div>
                 <!-- <div>Waiting for connection...</div> -->
               </div>
             </div>
             <div
               class="w-full max-w-3xl mx-auto bg-gray-800 rounded-lg p-6 shadow-lg space-y-6"
             >
-              <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
                 <div class="flex flex-col items-center space-y-4">
+                  <span class="text-gray-300 font-medium mb-2">AUTONOMUS</span>
+                  <div class="grid grid-cols-1 gap-2">
+
+                    <button
+                      id="m"
+                      class="gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-gray-700 hover:bg-gray-600 flex items-center justify-center"
+                    >
+										<svg width="100" height="100" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+											<path d="M12 8v8m-4-4h8"></path>
+											<circle cx="12" cy="12" r="3"></circle>
+										</svg>
+                      <span> AI (m)</span>
+                    </button>
+
+                  </div>
+                </div>
+
+								<div class="flex flex-col items-center space-y-4">
                   <span class="text-gray-300 font-medium mb-2">Pitch</span>
                   <div class="grid grid-cols-1 gap-2">
 
@@ -147,6 +178,7 @@
                     </button>
                   </div>
                 </div>
+
                 <div class="flex flex-col items-center space-y-4">
                   <span class="text-gray-300 font-medium mb-2">Roll</span>
                   <div class="grid grid-cols-1 gap-2">
@@ -171,7 +203,7 @@
                         ></path>
                         <path d="M21 3v5h-5"></path>
                       </svg>
-                      <span>Clockwise (d)</span>
+                      <span>CW (d)</span>
                     </button>
                     <button
                       id="a"
@@ -194,7 +226,7 @@
                         ></path>
                         <path d="M3 3v5h5"></path>
                       </svg>
-                      <span>Counter-CW (a)</span>
+                      <span>CCW (a)</span>
                     </button>
                   </div>
                 </div>
