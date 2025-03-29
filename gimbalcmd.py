@@ -123,7 +123,6 @@ def setpitchrollyaw(pitchin, rollin, yawin):
      roll = rollconvert(rollin)
      yaw = yawconvert(yawin)
      print(pitchin, rollin, yawin)
-     print(pitch, roll, yaw)
      cmd = bytes.fromhex('FA0612'+pitch+roll+yaw+crc)
      cmdexecute(cmd,sleep, True)
 ######################################################
@@ -344,6 +343,7 @@ def cmdexecute(cmd,sleep,pry=False):
 
 class GimbalControl:
     x, y, z = 0, 0, 0
+    last_dx, last_dy, last_dz = 0, 0, 0
     acc = 0
     last_time = time.time()
     last_char = None
@@ -375,7 +375,25 @@ class GimbalControl:
         print("Done")
         # datalog(safemode)
 
-    def handle(self, char):
+    def reset(self):
+        setpitchrollyaw(0, 0, 0)
+
+    def move(self, dx, dy, dz, speed=1):
+        self.x += dx * (speed + 2 * int(dx == self.last_dx))
+        self.y += dy * (speed + 2 * int(dy == self.last_dy))
+        self.z += dz * (speed + 2 * int(dz == self.last_dz))
+
+        self.x = max(min(self.x, 25), -25)
+        self.y = max(min(self.y, 25), -25)
+        self.z = max(min(self.z, 25), -25)
+
+        self.last_dx = dx
+        self.last_dy = dy
+        self.last_dz = dz
+
+        setpitchrollyaw(self.x, self.y, self.z)
+
+    def handle_manual(self, char):
         try:
             if char == self.last_char and time.time() - self.last_time < 1:
                 self.acc += 0
@@ -404,7 +422,7 @@ class GimbalControl:
             self.y = max(min(self.y, 25), -25)
             self.z = max(min(self.z, 25), -25)
 
-            print(self.x, self.y, self.z)
+            print('xyz', self.x, self.y, self.z)
 
             self.last_char = char
             self.last_time = time.time()
