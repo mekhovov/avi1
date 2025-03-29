@@ -13,9 +13,10 @@
       ws.onopen = () => console.log('Connected to server');
       ws.onmessage = (event) => console.log('Server:', event.data);
 
-      ws.onmessage = function(event) {
-         // Set the received base64 image as the image source
-         document.getElementById('video_feed').src = 'data:image/jpeg;base64,' + event.data;
+      ws.onmessage = function (event) {
+        // Set the received base64 image as the image source
+        document.getElementById('video_feed').src =
+          'data:image/jpeg;base64,' + event.data;
       };
 
       document.addEventListener('keydown', (event) => {
@@ -32,15 +33,17 @@
           h: 'green',
         };
 
-      if (modeKeys.includes(key)) {
-        const mode = key === 'm' ? 'manual' : 'auto';
-        ws.send(mode);
+        if (modeKeys.includes(key)) {
+          const mode = key === 'm' ? 'manual' : 'auto';
+          ws.send(mode);
 
-        document.getElementById('m').style.backgroundColor = key === 'm' ? 'orange' : '';
-        document.getElementById('n').style.backgroundColor = key === 'n' ? 'orange' : '';
+          document.getElementById('m').style.backgroundColor =
+            key === 'm' ? 'orange' : '';
+          document.getElementById('n').style.backgroundColor =
+            key === 'n' ? 'orange' : '';
 
-        console.log('Mode set to:', mode);
-      }
+          console.log('Mode set to:', mode);
+        }
 
         if (validKeys.includes(key)) {
           ws.send(key);
@@ -87,27 +90,27 @@
               class="relative bg-gray-900 rounded-lg overflow-hidden aspect-video w-full max-w-3xl mx-auto border-2 border-gray-700 shadow-lg"
             >
               <div>
-<img id="video_feed" width="768" height="768"/>
-</div>
-<!--            <iframe-->
-<!--                      id="videoFrame"-->
-<!--                      width="100%"-->
-<!--                      height="100%"-->
-<!--                      src="http://127.0.0.1:8000"-->
-<!--                      frameborder="0"-->
-<!--                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
-<!--                      allowfullscreen>-->
-<!--                  </iframe>-->
+                <img id="video_feed" width="768" height="768" />
+              </div>
+              <!--            <iframe-->
+              <!--                      id="videoFrame"-->
+              <!--                      width="100%"-->
+              <!--                      height="100%"-->
+              <!--                      src="http://127.0.0.1:8000"-->
+              <!--                      frameborder="0"-->
+              <!--                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+              <!--                      allowfullscreen>-->
+              <!--                  </iframe>-->
 
-<!--            <iframe-->
-<!--               id="videoFrame"-->
-<!--               width="100%"-->
-<!--               height="100%"-->
-<!--               src="http://192.168.0.116:8000"-->
-<!--               frameborder="0"-->
-<!--               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
-<!--               allowfullscreen>-->
-<!--            </iframe>-->
+              <!--            <iframe-->
+              <!--               id="videoFrame"-->
+              <!--               width="100%"-->
+              <!--               height="100%"-->
+              <!--               src="http://192.168.0.116:8000"-->
+              <!--               frameborder="0"-->
+              <!--               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+              <!--               allowfullscreen>-->
+              <!--            </iframe>-->
 
               <!-- <iframe
                 id="videoFrame"
