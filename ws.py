@@ -15,8 +15,7 @@ async def handle_connection(websocket):
     except websockets.exceptions.ConnectionClosed:
         pass
     finally:
-        clients.remove(websocket)
-
+        
 async def main():
     async with websockets.serve(handle_connection, "localhost", 8765):
         print("WebSocket server running on ws://localhost:8765")
