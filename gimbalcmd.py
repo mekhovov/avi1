@@ -353,7 +353,7 @@ class GimbalControl:
 
     #Intializes script
     def main(self):
-        print('Initializing...', end='')
+        print('Initializing...')
         sys.stdout.flush()
         ser = serialinit()
         # safemode = responsetest(ser)
