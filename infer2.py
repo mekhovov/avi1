@@ -15,13 +15,13 @@ cap = cv2.VideoCapture(ip_camera_url)
 
 import gimbalcmd
 
-gc = gimbalcmd.GimbalControl()
+# gc = gimbalcmd.GimbalControl()
 
 if not cap.isOpened():
     print("Error: Could not open video stream.")
     exit()
 
-gc.reset()
+# gc.reset()
 
 while True:
     ret, frame = cap.read()  # Capture a frame from the IP camera stream
@@ -52,7 +52,7 @@ while True:
             dy = -int((y_center - y)//abs(y_center - y))
         except (ValueError, ZeroDivisionError):
             dy = 0
-        gc.move(dy, 0, dx, 1, acc=0)
+        # gc.move(dy, 0, dx, 1, acc=0)
         time.sleep(1)
 
     # Display the frame with detection results
