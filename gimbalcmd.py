@@ -432,6 +432,7 @@ class GimbalControl:
 
 
 if __name__ == '__main__':
+    gc = GimbalControl()
     setpitchrollyaw(25, 25, 25)
     setpitchrollyaw(-25,-25,-25)
     setpitchrollyaw(0,0,0)
