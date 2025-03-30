@@ -3028,9 +3028,25 @@ body {
     width: 120px;
   }
 
+  #w, #s, #a, #d {
+    width: 100px
+  }
+
+  #q, #e {
+    width: 80px;
+  }
+
   .md\:grid-cols-5 {
 		grid-template-columns: repeat(5, minmax(0, 1fr))
 	}
+
+  .md\:grid-cols-6 {
+		grid-template-columns: repeat(6, minmax(0, 1fr))
+	}
+
+  .center-text {
+    text-align: center;
+  }
 
 	.md\:text-sm {
 		font-size: .875rem;
