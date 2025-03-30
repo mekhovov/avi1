@@ -400,22 +400,21 @@ class GimbalControl:
             else:
                 self.acc = 0
             dv = 3 + self.acc
-            match char:
-                case 'q':
+            if char == 'q':
                     self.z += dv
-                case 'e':
+            elif char == 'e':
                     self.z -= dv
-                case 's':
+            elif char == 's':
                     self.x += dv
-                case 'w':
+            elif char == 'w':
                     self.x -= dv
-                case 'a':
+            elif char == 'a':
                     self.y -= dv
-                case 'd':
+            elif char == 'd':
                     self.y += dv
-                case 'h':
+            elif char == 'h':
                     self.x, self.y, self.z = 0, 0, 0
-                case _:
+            else:
                     return
 
             self.x = max(min(self.x, 25), -25)
