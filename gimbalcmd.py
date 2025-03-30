@@ -13,7 +13,7 @@ import time
 import serial
 import binascii
 from serial import SerialException
-from pynput import keyboard
+# from pynput import keyboard
 
 '''
 WIP to do list
