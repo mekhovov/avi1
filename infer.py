@@ -1,5 +1,6 @@
 import asyncio
 import base64
+import time
 
 import cv2
 from ultralytics import YOLO
@@ -8,6 +9,7 @@ from ultralytics import YOLO
 model = YOLO('./model/best-yolo8.pt')  # Use your trained model path (e.g., best.pt)
 
 # IP Camera HTTP stream URL
+# ip_camera_url = "http://192.168.0.116:8000/"  # Your HTTP stream URL
 ip_camera_url = "http://127.0.0.1:8000/"  # Your HTTP stream URL
 
 # Open video capture using OpenCV
@@ -22,8 +24,8 @@ if not cap.isOpened():
     print("Error: Could not open video stream.")
     exit()
 
-async def automated(embedded=True, event=None, ws=None):
-    while True or not event.is_set():
+def automated(embedded=True, event=None, clients=None):
+    while True:
         ret, frame = cap.read()  # Capture a frame from the IP camera stream
 
         if not ret:
@@ -52,14 +54,19 @@ async def automated(embedded=True, event=None, ws=None):
                 dy = -int((y_center - y)//abs(y_center - y))
             except (ValueError, ZeroDivisionError):
                 dy = 0
-            gc.move(dy, 0, dx, 1)
+            if not event or event.is_set():
+                gc.move(dy, 0, dx, 1, acc = 0)
+                cv2.imshow("YOLO Inference", rendered_frame)
+                time.sleep(1)
+                # await asyncio.sleep(1)
 
-        if not embedded:
-            cv2.imshow("YOLO Inference", rendered_frame)
+        # if not embedded:
 
-        if ws:
-            encoded_frame = encode_frame(rendered_frame)
-            await ws.send(encoded_frame)
+        # if ws:
+        # if clients:
+        #     encoded_frame = encode_frame(rendered_frame)
+            # await ws.send(encoded_frame)
+            # await asyncio.gather(*(client.send(encoded_frame) for client in clients))
 
         # Exit loop if 'q' is pressed
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -91,15 +98,25 @@ def process_frame():
         x_min, y_min, x_max, y_max = box.xyxy[0]
         x = (x_min + x_max) // 2
         y = (y_min + y_max) // 2
+        acc = 1
         try:
-            dx = int((x_center - x) // abs(x_center - x))
+            dx = x_center - x
+            if abs(dx) > 20:
+                dx = int(dx // abs(dx))
+            else:
+                dx = 0
         except (ValueError, ZeroDivisionError):
             dx = 0
         try:
-            dy = -int((y_center - y) // abs(y_center - y))
+            dy = y_center - y
+            if abs(dx) > 20:
+                dy = -int(dy // abs(dy))
+            else:
+                dy = 0
         except (ValueError, ZeroDivisionError):
             dy = 0
-        gc.move(dy, 0, dx, 1)
+        gc.move(dy, 0, dx, 1, acc = 0)
+        time.sleep(1)
 
     encoded_frame = encode_frame(frame)
     return encoded_frame
@@ -108,4 +125,5 @@ async def main():
     await automated(embedded=False)
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    # asyncio.run(main())
+    automated(embedded=False)

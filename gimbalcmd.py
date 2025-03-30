@@ -378,10 +378,10 @@ class GimbalControl:
     def reset(self):
         setpitchrollyaw(0, 0, 0)
 
-    def move(self, dx, dy, dz, speed=1):
-        self.x += dx * (speed + 2 * int(dx == self.last_dx))
-        self.y += dy * (speed + 2 * int(dy == self.last_dy))
-        self.z += dz * (speed + 2 * int(dz == self.last_dz))
+    def move(self, dx, dy, dz, speed=1, acc=1):
+        self.x += dx * (speed + 2 * acc * int(dx == self.last_dx))
+        self.y += dy * (speed + 2 * acc * int(dy == self.last_dy))
+        self.z += dz * (speed + 2 * acc * int(dz == self.last_dz))
 
         self.x = max(min(self.x, 25), -25)
         self.y = max(min(self.y, 25), -25)
