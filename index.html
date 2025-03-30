@@ -21,7 +21,7 @@
 
       document.addEventListener('keydown', (event) => {
         const key = event.key.toLowerCase();
-        const validKeys = ['w', 'a', 's', 'd', 'q', 'e', 'h'];
+        const validKeys = ['w', 'a', 's', 'd', 'q', 'e', 'h', 'l'];
         const modeKeys = ['m', 'n'];
         const keyColors = {
           w: 'blue',
@@ -31,6 +31,7 @@
           a: 'yellow',
           e: 'yellow',
           h: 'green',
+          l: '#90EE90'
         };
 
         if (modeKeys.includes(key)) {
@@ -146,6 +147,7 @@
                   <div class="grid grid-cols-1 gap-2">
                     <button
                       id="m"
+											style="background-color: orange"
                       class="gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-gray-700 hover:bg-gray-600 flex items-center justify-center"
                     >
                       <svg
@@ -343,7 +345,7 @@
                   <span class="text-gray-300 font-medium mb-2">Control</span>
                   <div class="grid grid-cols-1 gap-2">
                     <button
-                      id="e"
+                      id="l"
                       class="gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-gray-700 hover:bg-gray-600 flex items-center justify-center"
                     >
                       <svg
@@ -363,7 +365,7 @@
                           fill="#FFF"
                         ></path>
                       </svg>
-                      <span>Laser</span>
+                      <span>Laser (l)</span>
                     </button>
                     <button
                       id="h"

@@ -1099,7 +1099,7 @@ body {
 }
 
 .items-center {
-	align-items: center
+	align-items: left
 }
 
 .items-stretch {
@@ -3023,6 +3023,10 @@ body {
   .md\:grid-cols-4 {
 		grid-template-columns: repeat(4, minmax(0, 1fr))
 	}
+
+  button {
+    width: 120px;
+  }
 
   .md\:grid-cols-5 {
 		grid-template-columns: repeat(5, minmax(0, 1fr))
