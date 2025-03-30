@@ -4,7 +4,7 @@ import cv2
 from ultralytics import YOLO
 
 # Load YOLO model (replace with your model file path)
-model = YOLO('best-yolo8.pt')  # Use your trained model path (e.g., best.pt)
+model = YOLO('./model/best-yolo8.pt')  # Use your trained model path (e.g., best.pt)
 
 # IP Camera HTTP stream URL
 # ip_camera_url = "http://127.0.0.1:8000/"  # Your HTTP stream URL
