@@ -283,7 +283,7 @@ def pitchconvert(pitchin):
      sleeptime[0] = ((sleepmultiplier[0] * sleepinput)+sleepmultiplier[1])
      axispos[0] = pitchin
      sleep[0] = True
-     # print('Pitch axis:', pitchin, end='°\n')
+     # print('Pitch axis:', pitchin, end='\n')
      return(pitch)
 	 
 def rollconvert(rollin):
@@ -298,7 +298,7 @@ def rollconvert(rollin):
      sleeptime[0] = abs((sleepmultiplier[2] * sleepinput)+sleepmultiplier[3])
      axispos[1] = rollin
      sleep[0] = True
-     # print('Roll axis:', rollin, end='°\n')
+     # print('Roll axis:', rollin, end='\n')
      return(roll) 
 	 
 def yawconvert(yawin):
@@ -313,7 +313,7 @@ def yawconvert(yawin):
      sleeptime[0] = abs((sleepmultiplier[4] * sleepinput)+sleepmultiplier[5])
      axispos[2] = yawin
      sleep[0] = True
-     # print('Yaw axis:', yawin, end='°\n')
+     # print('Yaw axis:', yawin, end='\n')
      return(yaw)
 ###########################################################################################################################
 ###########################################################################################################################
