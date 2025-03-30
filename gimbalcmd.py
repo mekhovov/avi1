@@ -428,7 +428,7 @@ class GimbalControl:
 
             setpitchrollyaw(self.x, self.y, self.z)
         except Exception as e:
-            print(f"Error: {e}")
+            print("Error", e)
 
 
 if __name__ == '__main__':
